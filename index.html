@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>Static Fullscreen Page</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: black;
+        }
+
+        #container {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <img src="bashar-assad.png" alt="image" id="fullscreenImage">
+</div>
+
+<audio id="audio" src="bashar-assad.mp3" loop></audio>
+
+<script>
+    const audio = document.getElementById("audio");
+    const img = document.getElementById("fullscreenImage");
+
+    function enableFullscreenAndAudio() {
+        audio.play().catch(() => {});
+
+        if (img.requestFullscreen) {
+            img.requestFullscreen();
+        } else if (img.webkitRequestFullscreen) {
+            img.webkitRequestFullscreen();
+        } else if (img.msRequestFullscreen) {
+            img.msRequestFullscreen();
+        }
+    }
+
+    window.addEventListener("load", () => {
+        audio.play().catch(() => {});
+    });
+
+    document.addEventListener("click", enableFullscreenAndAudio, { once: true });
+</script>
+
+</body>
+</html>
